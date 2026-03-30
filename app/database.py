@@ -9,7 +9,7 @@ engine = create_engine(
     settings.DATABASE_URL,
     echo=(settings.APP_ENV == "development"),
     pool_pre_ping=True,
-    pool_size=5,           # Neon free tier has connection limits
+    pool_size=5,
     max_overflow=10,
     connect_args=connect_args,
 )
@@ -21,5 +21,5 @@ def get_session():
 
 
 def init_db() -> None:
-    from app.models import equipment, batch, unit_operation, dependency  # noqa: F401
+    from app.models import equipment, batch, unit_operation, dependency
     SQLModel.metadata.create_all(engine)
